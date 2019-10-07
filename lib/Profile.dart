@@ -11,10 +11,6 @@ class _ProfileState extends State<Profile>{
   {
     return new Scaffold
     (
-      appBar: new AppBar
-      (
-        title: new Text("個人"),  
-      ),
       body: new Center
       (
         child: new Text("這是個人頁面"),

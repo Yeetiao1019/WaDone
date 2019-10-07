@@ -11,10 +11,6 @@ class _NotificationPageState extends State<NotificationPage>{
   {
     return new Scaffold
     (
-      appBar: new AppBar
-      (
-        title: new Text("通知"),  
-      ),
       body: new Center
       (
         child: new Text("這是通知"),

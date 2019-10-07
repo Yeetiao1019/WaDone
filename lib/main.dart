@@ -12,7 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false, //顯示'Debug'字樣
+      title: 'WaDone',
       theme: ThemeData(
         primaryColor: Colors.teal.shade200,//上方欄底色
         primaryTextTheme: TextTheme(
@@ -21,14 +22,14 @@ class MyApp extends StatelessWidget {
     )
   )
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  // MyHomePage({Key key, this.title}) : super(key: key);
+  // final String title;
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -46,8 +47,86 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      appBar: new AppBar(
+      leading: Builder(builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.menu,size: 30.0,),
+              onPressed: (){
+                Scaffold.of(context).openDrawer(); //點擊menu打開Drawer
+              },
+            );
+          }),
+      ),
+      drawer: Drawer(
+        child: ListView(
+    children: <Widget>[
+      UserAccountsDrawerHeader(
+        accountEmail: Text('foo@nkust.edu.tw'), 
+        accountName: Text('陳三斤'),
+        currentAccountPicture: CircleAvatar(
+          backgroundImage: AssetImage('image/dog_akitainu.png'),
+        ),
+      ),
+      ExpansionTile(  //可展開列表
+        title: Text('已訂閱社團'),
+        children: <Widget>[ //子列表
+          new ListTile(
+              title: const Text('典雅國樂社'),
+              leading: CircleAvatar(
+                backgroundImage:AssetImage('image/cmc.jpg'), //子列表圖片
+              ),
+              onTap: () {
+                setState(() {
+                });
+              },              
+            ),
+        ],
+        //subtitle: Text('ListSubtitle1',maxLines: 2,overflow: TextOverflow.ellipsis,),
+        leading: CircleAvatar(child: Text("訂")),
+      ),
+      ExpansionTile(
+        title: Text('服務性社團'),
+        //subtitle: Text('ListSubtitle1',maxLines: 2,overflow: TextOverflow.ellipsis,),
+        leading: CircleAvatar(child: Text("服")),
+      ),
+     ExpansionTile(
+        title: Text('學術性社團'),
+        //subtitle: Text('ListSubtitle2',maxLines: 2,overflow: TextOverflow.ellipsis,),
+        leading: CircleAvatar(child: Text("學")),
+      ),
+      ExpansionTile(
+        title: Text('康樂性社團'),
+        //subtitle: Text('ListSubtitle3',maxLines: 2,overflow: TextOverflow.ellipsis,),
+        leading: CircleAvatar(child: Text("康")),
+      ),
+      ExpansionTile(
+        title: Text('體育性社團'),
+        //subtitle: Text('ListSubtitle3',maxLines: 2,overflow: TextOverflow.ellipsis,),
+        leading: CircleAvatar(child: Text("體")),
+      ),
+      ExpansionTile(
+        title: Text('系學會'),
+        //subtitle: Text('ListSubtitle3',maxLines: 2,overflow: TextOverflow.ellipsis,),
+        leading: CircleAvatar(child: Text("系")),
+      ),
+      Divider(),//分割線
+      new AboutListTile(
+        icon: new CircleAvatar(),
+        child: new Text("關於WaDone"),
+        applicationName: "WaDone",
+        applicationVersion: "1.0",
+        applicationLegalese: "NKUST IC",
+        aboutBoxChildren: <Widget>[
+          new Text("文字"),
+          new Text("文字")
+        ],
+      ),
+      Divider(),//分割線
+    ],
+  ),
+      ),
       body: _children[_selectedIndex],
-        bottomNavigationBar:new Theme(
+        bottomNavigationBar:new Theme(    
           data:Theme.of(context).copyWith(
             canvasColor: Colors.teal[200], //下方欄底色
             //primaryColor: Colors.red,
@@ -56,10 +135,8 @@ class _MyHomePageState extends State<MyHomePage> {
             //   .textTheme
             //   .copyWith(caption: new TextStyle(color: Colors.yellow))
           ),
-          child: BottomNavigationBar(
-            
-          items: <BottomNavigationBarItem>[
-            
+          child: BottomNavigationBar(        
+          items: <BottomNavigationBarItem>[        
             new BottomNavigationBarItem(
               icon: const Icon(Icons.home),
               title: new Text('主頁')),
@@ -81,6 +158,8 @@ class _MyHomePageState extends State<MyHomePage> {
           currentIndex: _selectedIndex,
           fixedColor: Colors.blueGrey, //下方分頁點擊顏色
           onTap: _onItemTapped,   //分頁點擊事件
+          showSelectedLabels: true,   // 顯示已選擇之底部選項
+          showUnselectedLabels: true, // 顯示未選擇之底部選項
           ),
         ),
     );

@@ -11,10 +11,6 @@ class _SubscriptionPageState extends State<SubscriptionPage>{
   {
     return new Scaffold
     (
-      appBar: new AppBar
-      (
-        title: new Text("訂閱"),  
-      ),
       body: new Center
       (
         child: new Text("這是訂閱"),

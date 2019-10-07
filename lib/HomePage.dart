@@ -11,10 +11,6 @@ class _HomePageState extends State<HomePage>{
   {
     return new Scaffold
     (
-      appBar: new AppBar
-      (
-        title: new Text("主頁"),  
-      ),
       body: new Center
       (
         child: new Text("這是主頁"),
