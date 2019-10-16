@@ -1,0 +1,5 @@
+version: "Apple Swift version 5.1 (swiftlang-1100.0.270.13 clang-1100.0.33.7)"
+options: "15eb288d2a21254a1a4a201716823565"
+build_time: [1571186232, 532871000]
+inputs:
+  "/Users/yee/Desktop/MIS/\u5C08\u984C/WaDone_ver1/ios/Runner/AppDelegate.swift": !dirty [1571185014, 119578183]
