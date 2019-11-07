@@ -1,14 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:wadon_1/Auth.dart';
+import 'package:wadon_1/Profile.dart';
 
 class HomePage extends StatefulWidget{
+  
+  // HomePage({this.auth});
+  // final BaseAuth auth;
+
   @override
-  _HomePageState createState() => _HomePageState();
+  State<StatefulWidget> createState() => new _HomePageState();
 }
+
+// enum AuthStatus{
+//   notSignedIn,
+//   SignedIn
+// }
+
 class _HomePageState extends State<HomePage> {
+  // AuthStatus authStatus = AuthStatus.notSignedIn;
+
+  // @override
+  //  initState(){
+  //   super.initState();
+  //   widget.auth.currentUser().then((userId){
+  //     setState((){
+  //       //authStatus = userId == null ? AuthStatus.notSignedIn : AuthStatus.SignedIn;
+  //     });
+  //   });
+  // }
+
+  // void _signedIn(){
+  //   setState(() {
+  //     authStatus = AuthStatus.SignedIn;
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    // switch (authStatus){
+    //   case AuthStatus.notSignedIn:
+    //     return new Profile(
+    //       auth: widget.auth,
+    //       onSignedIn: _signedIn,
+    //     );
+    //   case AuthStatus.SignedIn:
+      return new Scaffold(
       body: Container(
           height: 250.0,
           width: 500.0,
@@ -34,6 +71,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),  
     );   
-
+    }
   }
-}
+//}

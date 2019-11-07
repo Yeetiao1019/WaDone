@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'Auth.dart';
 
 class Profile extends StatefulWidget{
+  Profile({this.auth,this.onSignedIn});
+  final BaseAuth auth;
+  final VoidCallback onSignedIn;
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -34,12 +37,15 @@ class _ProfileState extends State<Profile>{
     if(loginToFirebase()){
       try{
         if(_formType == FormType.login){
-      FirebaseUser user = (await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email,password: _password)).user;
-      print('Signed in: ${user.uid}');
+          String userId = await widget.auth.signInWithEmailAndPassword(_email,_password);
+      //FirebaseUser user = (await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email,password: _password)).user;
+      print('Signed in: $userId');
       }else{
-          FirebaseUser user =(await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email,password: _password)).user;
-          print('Registered user: ${user.uid}');
+          String userId = await widget.auth.createUserWithEmailAndPassword(_email, _password);
+          //FirebaseUser user =(await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email,password: _password)).user;
+          print('Registered user: $userId');
         }
+        widget.onSignedIn();
       }
       catch(e){
         print('Error: $e');
